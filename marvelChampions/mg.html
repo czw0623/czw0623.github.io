@@ -87,10 +87,16 @@
         }
         /* Buttons */
         .button-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-top: 2px solid #ddd;
+            padding: 15px 20px;
             text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
         }
         .btn {
             padding: 12px 25px;
@@ -100,6 +106,10 @@
             cursor: pointer;
             margin: 0 10px;
             transition: background-color 0.3s ease;
+            min-width: 120px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
         .btn-primary {
             background-color: #007bff;
@@ -115,6 +125,43 @@
         .btn-danger:hover {
             background-color: #c82333;
         }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        /* 為頁面底部添加 padding，避免內容被固定按鈕遮擋 */
+        body {
+            padding-bottom: 80px;
+        }
+        
+        /* 響應式設計 - 移動設備優化 */
+        @media (max-width: 768px) {
+            .button-container {
+                padding: 12px 15px;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 1em;
+                margin: 0 5px;
+                min-width: 100px;
+            }
+            body {
+                padding-bottom: 70px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .btn {
+                display: block;
+                width: calc(50% - 10px);
+                margin: 5px;
+                display: inline-block;
+            }
+        }
         /* Footer */
         .footer-note {
             text-align: center;
@@ -126,6 +173,11 @@
 </head>
 <body>
     <div class="campaign-log">
+        <!-- 用戶狀態顯示區 -->
+        <div id="user-status" style="text-align: right; margin-bottom: 15px; padding: 10px; background: #f8f9fa; border-radius: 5px; font-size: 0.9em; color: #6c757d;">
+            <span id="welcome-message">載入中...</span>
+        </div>
+
         <h1>異變基因 戰役日誌</h1>
 
         <div class="section">
@@ -271,71 +323,23 @@
             </div>
         </div>
 
-        <div class="button-container">
-            <button id="saveButton" class="btn btn-primary">儲存進度</button>
-            <button id="resetButton" class="btn btn-danger">重設表單</button>
-        </div>
-
         <div class="footer-note">
             <p>Permission granted to photocopy this page for personal use only. © MARVEL © 2022 FFG</p>
             <p>Campaign log also available for download at www.FantasyFlightGames.com/Marvel-Champions</p>
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const formElements = document.querySelectorAll('input[type="text"], input[type="number"], input[type="checkbox"], textarea');
-            const storageKey = 'mutantGenesisLog';
+    <!-- 固定在底部的按鈕 -->
+    <div class="button-container">
+        <a href="../index.html" class="btn btn-secondary">回到首頁</a>
+        <button id="saveButton" class="btn btn-primary">儲存進度</button>
+        <button id="resetButton" class="btn btn-danger">重設表單</button>
+    </div>
 
-            function saveData() {
-                const data = {};
-                formElements.forEach(el => {
-                    if (el.type === 'checkbox') {
-                        data[el.id] = el.checked;
-                    } else {
-                        data[el.id] = el.value;
-                    }
-                });
-                localStorage.setItem(storageKey, JSON.stringify(data));
-                alert('進度已儲存！');
-            }
-
-            function loadData() {
-                const savedData = localStorage.getItem(storageKey);
-                if (savedData) {
-                    const data = JSON.parse(savedData);
-                    formElements.forEach(el => {
-                        if (data[el.id] !== undefined) {
-                            if (el.type === 'checkbox') {
-                                el.checked = data[el.id];
-                            } else {
-                                el.value = data[el.id];
-                            }
-                        }
-                    });
-                }
-            }
-
-            function resetData() {
-                if (confirm('您確定要重設所有資料嗎？此動作無法復原。')) {
-                    formElements.forEach(el => {
-                        if (el.type === 'checkbox') {
-                            el.checked = false;
-                        } else {
-                            el.value = '';
-                        }
-                    });
-                    localStorage.removeItem(storageKey);
-                    alert('表單已重設。');
-                }
-            }
-
-            document.getElementById('saveButton').addEventListener('click', saveData);
-            document.getElementById('resetButton').addEventListener('click', resetData);
-
-            // Load data on page load
-            loadData();
-        });
-    </script>
+    <!-- 引入 Google 登入模組 -->
+    <script src="../libs/google-auth.js"></script>
+    
+    <!-- 引入戰役日誌功能模組 -->
+    <script src="mg.js"></script>
 </body>
 </html>
