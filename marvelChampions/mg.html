@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>漫威傳奇再起: 異變基因 戰役紀錄</title>
+    <style>
+        /* Basic Reset & Body Style */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #e9e9e9;
+            color: #333;
+            line-height: 1.6;
+        }
+        /* Main Container */
+        .campaign-log {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        /* Typography */
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        h2 {
+            background-color: #4a5568;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            margin-top: 30px;
+            font-size: 1.4em;
+        }
+        /* Layout */
+        .section {
+            margin-bottom: 20px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .grid-item {
+            border: 1px solid #dcdcdc;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .form-group input[type="text"], .form-group input[type="number"], .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            font-family: inherit;
+        }
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-check input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+        }
+        .form-check label {
+            font-size: 1em;
+        }
+        /* Buttons */
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .btn {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        /* Footer */
+        .footer-note {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="campaign-log">
+        <h1>異變基因 戰役日誌</h1>
+
+        <div class="section">
+            <h2>玩家信息</h2>
+            <div class="grid-container">
+                <div class="grid-item" id="player1">
+                    <h3>1號玩家</h3>
+                    <div class="form-group"><label for="p1_identity">身份:</label><input type="text" id="p1_identity"></div>
+                    <div class="form-group"><label for="p1_aspect">職能:</label><input type="text" id="p1_aspect"></div>
+                    <div class="form-group"><label for="p1_health">剩餘生命值:</label><input type="number" id="p1_health"></div>
+                </div>
+                <div class="grid-item" id="player2">
+                    <h3>2號玩家</h3>
+                    <div class="form-group"><label for="p2_identity">身份:</label><input type="text" id="p2_identity"></div>
+                    <div class="form-group"><label for="p2_aspect">職能:</label><input type="text" id="p2_aspect"></div>
+                    <div class="form-group"><label for="p2_health">剩餘生命值:</label><input type="number" id="p2_health"></div>
+                </div>
+                <div class="grid-item" id="player3">
+                    <h3>3號玩家</h3>
+                    <div class="form-group"><label for="p3_identity">身份:</label><input type="text" id="p3_identity"></div>
+                    <div class="form-group"><label for="p3_aspect">職能:</label><input type="text" id="p3_aspect"></div>
+                    <div class="form-group"><label for="p3_health">剩餘生命值:</label><input type="number" id="p3_health"></div>
+                </div>
+                <div class="grid-item" id="player4">
+                    <h3>4號玩家</h3>
+                    <div class="form-group"><label for="p4_identity">身份:</label><input type="text" id="p4_identity"></div>
+                    <div class="form-group"><label for="p4_aspect">職能:</label><input type="text" id="p4_aspect"></div>
+                    <div class="form-group"><label for="p4_health">剩餘生命值:</label><input type="number" id="p4_health"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>劇本</h2>
+            <div class="grid-container">
+                <div class="form-check"><input type="checkbox" id="sc1_police"><label for="sc1_police">劇本1: 惊慌的警察被击败</label></div>
+                <div class="form-check"><input type="checkbox" id="sc2_enemy"><label for="sc2_enemy">劇本2: 我敌人的敌人被击败</label></div>
+                <div class="form-check"><input type="checkbox" id="sc3_captive"><label for="sc3_captive">劇本3: 找到被囚者被击败</label></div>
+                <div class="form-check"><input type="checkbox" id="sc4_surprise"><label for="sc4_surprise">劇本4: 奇袭被击败</label></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>勝利牌區中的逆轉未來卡牌</h2>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <div class="form-group">
+                        <label for="dofp_victory_text">劇本1-4 (將這些卡牌從戰役中移除):</label>
+                        <textarea id="dofp_victory_text" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>遭遇牌庫中的逆轉未來卡牌</h2>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <div class="grid-container">
+                        <div class="form-group">
+                            <label for="dofp_encounter_s1_text">劇本1:</label>
+                            <textarea id="dofp_encounter_s1_text" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="dofp_encounter_s2_text">劇本2:</label>
+                            <textarea id="dofp_encounter_s2_text" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="dofp_encounter_s3_text">劇本3:</label>
+                            <textarea id="dofp_encounter_s3_text" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="dofp_encounter_s4_text">劇本4:</label>
+                            <textarea id="dofp_encounter_s4_text" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="section">
+            <h2>場上的職能升級 </h2>
+            <h4>(劇本1-4 將這些卡牌從戰役中移除)</h4>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <div class="form-group">
+                        <label for="p1_aspect_upgrade">1號玩家:</label>
+                        <textarea id="p1_aspect_upgrade" placeholder="寫下升級名稱..."></textarea>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <div class="form-group">
+                        <label for="p2_aspect_upgrade">2號玩家:</label>
+                        <textarea id="p2_aspect_upgrade" placeholder="寫下升級名稱..."></textarea>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <div class="form-group">
+                        <label for="p3_aspect_upgrade">3號玩家:</label>
+                        <textarea id="p3_aspect_upgrade" placeholder="寫下升級名稱..."></textarea>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <div class="form-group">
+                        <label for="p4_aspect_upgrade">4號玩家:</label>
+                        <textarea id="p4_aspect_upgrade" placeholder="寫下升級名稱..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>歡歡 (劇本2-4)</h2>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h4>劇本2</h4>
+                    <div class="form-check"><input type="checkbox" id="jubilee_s2_play"><label for="jubilee_s2_play">歡歡在場上</label></div>
+                </div>
+                <div class="grid-item">
+                    <h4>劇本3</h4>
+                    <div class="form-check"><input type="checkbox" id="jubilee_s3_play"><label for="jubilee_s3_play">歡歡在場上</label></div>
+                    <div class="form-check"><input type="checkbox" id="jubilee_s3_removed"><label for="jubilee_s3_removed">歡歡從戰役中移除</label></div>
+                </div>
+                <div class="grid-item">
+                    <h4>劇本4</h4>
+                    <div class="form-check"><input type="checkbox" id="jubilee_s4_play"><label for="jubilee_s4_play">歡歡在場上</label></div>
+                    <div class="form-check"><input type="checkbox" id="jubilee_s4_removed"><label for="jubilee_s4_removed">歡歡從戰役中移除</label></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>盟友</h2>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <div class="form-group"><label for="ally_abduction">綁架協議的盟友 (劇本2)</label><textarea id="ally_abduction" rows="3"></textarea></div>
+                </div>
+                <div class="grid-item">
+                    <div class="form-group"><label for="ally_rescue">救援俘虜或找到被囚者下方的盟友 (劇本3)</label><textarea id="ally_rescue" rows="3"></textarea></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button id="saveButton" class="btn btn-primary">儲存進度</button>
+            <button id="resetButton" class="btn btn-danger">重設表單</button>
+        </div>
+
+        <div class="footer-note">
+            <p>Permission granted to photocopy this page for personal use only. © MARVEL © 2022 FFG</p>
+            <p>Campaign log also available for download at www.FantasyFlightGames.com/Marvel-Champions</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const formElements = document.querySelectorAll('input[type="text"], input[type="number"], input[type="checkbox"], textarea');
+            const storageKey = 'mutantGenesisLog';
+
+            function saveData() {
+                const data = {};
+                formElements.forEach(el => {
+                    if (el.type === 'checkbox') {
+                        data[el.id] = el.checked;
+                    } else {
+                        data[el.id] = el.value;
+                    }
+                });
+                localStorage.setItem(storageKey, JSON.stringify(data));
+                alert('進度已儲存！');
+            }
+
+            function loadData() {
+                const savedData = localStorage.getItem(storageKey);
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    formElements.forEach(el => {
+                        if (data[el.id] !== undefined) {
+                            if (el.type === 'checkbox') {
+                                el.checked = data[el.id];
+                            } else {
+                                el.value = data[el.id];
+                            }
+                        }
+                    });
+                }
+            }
+
+            function resetData() {
+                if (confirm('您確定要重設所有資料嗎？此動作無法復原。')) {
+                    formElements.forEach(el => {
+                        if (el.type === 'checkbox') {
+                            el.checked = false;
+                        } else {
+                            el.value = '';
+                        }
+                    });
+                    localStorage.removeItem(storageKey);
+                    alert('表單已重設。');
+                }
+            }
+
+            document.getElementById('saveButton').addEventListener('click', saveData);
+            document.getElementById('resetButton').addEventListener('click', resetData);
+
+            // Load data on page load
+            loadData();
+        });
+    </script>
+</body>
+</html>
