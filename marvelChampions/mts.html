@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>漫威傳奇再起: The Mad Titan's Shadow 戰役紀錄</title>
+    <style>
+        /* Basic Reset & Body Style */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #e9e9e9;
+            color: #333;
+            line-height: 1.6;
+        }
+        /* Main Container */
+        .campaign-log {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        /* Typography */
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        h2 {
+            background-color: #4a5568;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            margin-top: 30px;
+            font-size: 1.4em;
+        }
+        h3 {
+            background-color: #6c757d;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        /* Layout */
+        .section {
+            margin-bottom: 20px;
+        }
+        .grid-container-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        .grid-container-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .grid-item {
+            border: 1px solid #dcdcdc;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+        .form-group input[type="text"], .form-group input[type="number"], .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            font-family: inherit;
+        }
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+        .form-check input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+        }
+        .form-check label {
+            font-size: 0.9em;
+        }
+        /* Scenario boxes */
+        .scenario-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: 2px solid #5a67d8;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            margin-bottom: 15px;
+        }
+        .scenario-number {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+        .scenario-title {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .checkbox-list {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        /* Notes section */
+        .notes-section {
+            background: #fffbf0;
+            border: 2px solid #ffd700;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .notes-header {
+            background: #ffd700;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        /* Buttons */
+        .button-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-top: 2px solid #ddd;
+            padding: 15px 20px;
+            text-align: center;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .btn {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.3s ease;
+            min-width: 120px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        /* 為頁面底部添加 padding，避免內容被固定按鈕遮擋 */
+        body {
+            padding-bottom: 80px;
+        }
+        
+        /* 響應式設計 - 移動設備優化 */
+        @media (max-width: 768px) {
+            .grid-container-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .grid-container-2 {
+                grid-template-columns: 1fr;
+            }
+            .button-container {
+                padding: 12px 15px;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 1em;
+                margin: 0 5px;
+                min-width: 100px;
+            }
+            body {
+                padding-bottom: 70px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .grid-container-4 {
+                grid-template-columns: 1fr;
+            }
+            .btn {
+                display: block;
+                width: calc(50% - 10px);
+                margin: 5px;
+                display: inline-block;
+            }
+        }
+        /* Footer */
+        .footer-note {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="campaign-log">
+        <!-- 用戶狀態顯示區 -->
+        <div id="user-status" style="text-align: right; margin-bottom: 15px; padding: 10px; background: #f8f9fa; border-radius: 5px; font-size: 0.9em; color: #6c757d;">
+            <span id="welcome-message">載入中...</span>
+            <br>
+            <span id="sync-info" style="font-size: 0.8em; color: #17a2b8;">📱 初始化儲存系統...</span>
+        </div>
+
+        <h1>The Mad Titan's Shadow 戰役日誌</h1>
+
+        <!-- 儲存說明 -->
+        <div id="storage-notice" style="margin: 15px 0; padding: 12px; background: linear-gradient(135deg, #e3f2fd, #f3e5f5); border-left: 4px solid #2196f3; border-radius: 5px; font-size: 0.9em;">
+            <strong>📱 儲存說明：</strong> 使用本地儲存模式，資料保存在此瀏覽器中。請定期備份您的資料。
+        </div>
+
+        <div class="section">
+            <h2>玩家信息</h2>
+            <div class="grid-container-4">
+                <div class="grid-item">
+                    <h3>1號玩家身份</h3>
+                    <div class="form-group">
+                        <input type="text" id="p1_identity" placeholder="玩家身份">
+                    </div>
+                    <div class="form-group">
+                        <label for="p1_hit_points">剩餘生命值:</label>
+                        <input type="number" id="p1_hit_points" placeholder="0">
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <h3>2號玩家身份</h3>
+                    <div class="form-group">
+                        <input type="text" id="p2_identity" placeholder="玩家身份">
+                    </div>
+                    <div class="form-group">
+                        <label for="p2_hit_points">剩餘生命值:</label>
+                        <input type="number" id="p2_hit_points" placeholder="0">
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <h3>3號玩家身份</h3>
+                    <div class="form-group">
+                        <input type="text" id="p3_identity" placeholder="玩家身份">
+                    </div>
+                    <div class="form-group">
+                        <label for="p3_hit_points">剩餘生命值:</label>
+                        <input type="number" id="p3_hit_points" placeholder="0">
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <h3>4號玩家身份</h3>
+                    <div class="form-group">
+                        <input type="text" id="p4_identity" placeholder="玩家身份">
+                    </div>
+                    <div class="form-group">
+                        <label for="p4_hit_points">剩餘生命值:</label>
+                        <input type="number" id="p4_hit_points" placeholder="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>劇本進度與條件追蹤</h2>
+            <div class="grid-container-4">
+                <div class="grid-item">
+                    <div class="scenario-box">
+                        <div class="scenario-number">劇本 1</div>
+                        <div class="scenario-title">黑曜法師 (Ebony Maw)</div>
+                        <div class="checkbox-list">
+                            <div class="form-check">
+                                <input type="checkbox" id="cosmo_added">
+                                <label for="cosmo_added">如果 <strong>宇宙犬 (Cosmo)</strong> 被加入戰役牌池，請勾選此處。</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="security_breach">
+                                <label for="security_breach">如果 <strong>安全漏洞 (Security Breach)</strong> 被加入戰役牌池，請勾選此處。</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <div class="scenario-box">
+                        <div class="scenario-number">劇本 2</div>
+                        <div class="scenario-title">塔防戰 (Tower Defense)</div>
+                        <div class="checkbox-list">
+                            <div class="form-check">
+                                <input type="checkbox" id="shawarma_added">
+                                <label for="shawarma_added">如果 <strong>沙威瑪 (Shawarma)</strong> 被加入戰役牌池，請勾選此處。</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="black_swan_added">
+                                <label for="black_swan_added">如果 <strong>黑天鵝 (Black Swan)</strong> 被加入戰役牌池，請勾選此處。</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="avengers_tower_damaged">
+                                <label for="avengers_tower_damaged">如果 <strong>復仇者大廈 (Avengers Tower)</strong> 具有 <strong>受損 (Damaged)</strong> 特徵，請勾選此處。</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <div class="scenario-box">
+                        <div class="scenario-number">劇本 3</div>
+                        <div class="scenario-title">薩諾斯 (Thanos)</div>
+                        <div class="checkbox-list">
+                            <div class="form-check">
+                                <input type="checkbox" id="system_shock_added">
+                                <label for="system_shock_added">如果 <strong>系統震盪 (System Shock)</strong> 被加入戰役牌池，請勾選此處。</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="infinity_stones_completed">
+                                <label for="infinity_stones_completed">如果 <strong>無限寶石 1B (The Infinity Stones 1B)</strong> 已完成，請勾選此處。</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <div class="scenario-box">
+                        <div class="scenario-number">劇本 4</div>
+                        <div class="scenario-title">海拉 (Hela)</div>
+                        <div class="checkbox-list">
+                            <div class="form-check">
+                                <input type="checkbox" id="norn_stone_added">
+                                <label for="norn_stone_added">如果 <strong>諾恩石 (Norn Stone)</strong> 被加入戰役牌池，請勾選此處。</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="odin_added">
+                                <label for="odin_added">如果 <strong>奧丁 (Odin)</strong> 被加入戰役牌池，請勾選此處。</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notes Section -->
+        <div class="notes-section">
+            <div class="notes-header">筆記</div>
+            <div class="form-group">
+                <textarea id="campaign_notes" rows="10" placeholder="在此記錄戰役筆記、重要事件、策略心得等..."></textarea>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <p>Permission granted to photocopy this page for personal use only. © MARVEL © 2021 FFG</p>
+            <p>Campaign log also available for download at www.FantasyFlightGames.com/Marvel-Champions</p>
+        </div>
+    </div>
+
+    <!-- 固定在底部的按鈕 -->
+    <div class="button-container">
+        <a href="../index.html" class="btn btn-secondary">回到首頁</a>
+        <button id="saveButton" class="btn btn-primary">儲存進度</button>
+        <button id="resetButton" class="btn btn-danger">重設表單</button>
+    </div>
+
+    <!-- 引入戰役日誌功能模組 -->
+    <script src="mts.js"></script>
+</body>
+</html>
