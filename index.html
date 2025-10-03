@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Web Page</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Google Identity Services -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <!-- Google Authentication Core Module -->
-    <script src="libs/google-auth.js"></script>
     <!-- Index Page Specific Module -->
     <script src="index.js"></script>
 </head>
@@ -36,37 +32,7 @@
                         <!-- 分隔線 -->
                         <div class="menu-divider"></div>
                         
-                        <!-- 登入狀態區域 -->
-                        <div class="auth-toolbar">
-                            <!-- 未登入狀態 -->
-                            <div id="logged-out-state" class="auth-state">
-                                <!-- Google Sign-In button is now here -->
-                                <div id="g_id_onload"
-                                     data-client_id="344978275183-2ilbkaf574jtufunu1hbu5c8tion3t9q.apps.googleusercontent.com"
-                                     data-context="signin"
-                                     data-ux_mode="popup"
-                                     data-callback="handleCredentialResponse"
-                                     data-auto_prompt="false">
-                                </div>
-                                <div class="g_id_signin"
-                                     data-type="standard"
-                                     data-shape="rectangular"
-                                     data-theme="outline"
-                                     data-text="signin_with"
-                                     data-size="large"
-                                     data-logo_alignment="left">
-                                </div>
-                            </div>
-                            
-                            <!-- 已登入狀態 -->
-                            <div id="logged-in-state" class="auth-state" style="display: none;">
-                                <div id="user-summary" class="user-info">
-                                    <img id="user-avatar" src="" alt="用戶頭像" class="user-avatar">
-                                    <span id="user-greeting" class="user-greeting"></span>
-                                </div>
-                                <button id="sign-out-btn" class="toolbar-btn logout-btn">登出</button>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
                 
@@ -80,28 +46,7 @@
             <h2>歡迎來到我的網站</h2>
             <p>探索各種功能和工具</p>
         </div>
-        
-        <!-- User Info Lightbox -->
-        <div id="user-info-lightbox" class="lightbox-overlay" style="display: none;">
-            <div class="lightbox-content">
-                <div class="lightbox-header">
-                    <h2>用戶資訊</h2>
-                    <button id="close-user-info" class="close-btn">&times;</button>
-                </div>
-                
-                <div class="lightbox-body">
-                    <div id="user-details">
-                        <div class="user-profile">
-                            <img id="user-picture" src="" alt="用戶頭像" width="80" height="80">
-                            <div id="user-text">
-                                <p><strong>姓名：</strong><span id="user-name"></span></p>
-                                <p><strong>Email：</strong><span id="user-email"></span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </main>
 </body>
 </html>
