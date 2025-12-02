@@ -4,110 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>漫威傳奇再起: Galaxy's Most Wanted 戰役紀錄</title>
+    <link rel="stylesheet" href="common.css">
     <style>
-        /* Basic Reset & Body Style */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #e9e9e9;
-            color: #333;
-            line-height: 1.6;
-        }
-        /* Main Container */
-        .campaign-log {
-            max-width: 1200px;
-            margin: 20px auto;
-            background: #ffffff;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        /* Typography */
-        h1, h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #2c3e50;
-        }
-        h2 {
-            background-color: #4a5568;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 5px;
-            margin-top: 30px;
-            font-size: 1.4em;
-        }
-        h3 {
-            background-color: #6c757d;
-            color: white;
-            padding: 6px 10px;
-            border-radius: 4px;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-        }
-        /* Layout */
-        .section {
-            margin-bottom: 20px;
-        }
+        /* GMW 特定樣式 */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
-        .grid-container-4 {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
-        .grid-container-2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-        .grid-item {
-            border: 1px solid #dcdcdc;
-            padding: 15px;
-            border-radius: 8px;
-            background: #f9f9f9;
-        }
-        .full-width {
-            grid-column: 1 / -1;
-        }
-        /* Form Elements */
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            font-size: 0.9em;
-        }
-        .form-group input[type="text"], .form-group input[type="number"], .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1em;
-            font-family: inherit;
-        }
-        .form-check {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .form-check input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            margin-right: 10px;
-        }
-        .form-check label {
-            font-size: 1em;
-        }
-        /* Scenario boxes */
+        
+        /* GMW 特定的 scenario boxes 樣式 */
         .scenario-box {
             background: #e3f2fd;
             border: 2px solid #2196f3;
@@ -115,6 +21,7 @@
             padding: 15px;
             text-align: center;
         }
+        
         .scenario-number {
             background: #2196f3;
             color: white;
@@ -123,99 +30,6 @@
             font-weight: bold;
             display: inline-block;
             margin-bottom: 10px;
-        }
-        /* Buttons */
-        .button-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #ffffff;
-            border-top: 2px solid #ddd;
-            padding: 15px 20px;
-            text-align: center;
-            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-        .btn {
-            padding: 12px 25px;
-            font-size: 1.1em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 0 10px;
-            transition: background-color 0.3s ease;
-            min-width: 120px;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-        }
-        .btn-primary {
-            background-color: #007bff;
-            color: white;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-        .btn-danger {
-            background-color: #dc3545;
-            color: white;
-        }
-        .btn-danger:hover {
-            background-color: #c82333;
-        }
-        .btn-secondary {
-            background-color: #6c757d;
-            color: white;
-        }
-        .btn-secondary:hover {
-            background-color: #5a6268;
-        }
-        
-        /* 為頁面底部添加 padding，避免內容被固定按鈕遮擋 */
-        body {
-            padding-bottom: 80px;
-        }
-        
-        /* 響應式設計 - 移動設備優化 */
-        @media (max-width: 768px) {
-            .grid-container-4 {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .grid-container-2 {
-                grid-template-columns: 1fr;
-            }
-            .button-container {
-                padding: 12px 15px;
-            }
-            .btn {
-                padding: 10px 20px;
-                font-size: 1em;
-                margin: 0 5px;
-                min-width: 100px;
-            }
-            body {
-                padding-bottom: 70px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .grid-container-4 {
-                grid-template-columns: 1fr;
-            }
-            .btn {
-                display: block;
-                width: calc(50% - 10px);
-                margin: 5px;
-                display: inline-block;
-            }
-        }
-        /* Footer */
-        .footer-note {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 0.8em;
-            color: #6c757d;
         }
     </style>
 </head>
@@ -229,12 +43,6 @@
         </div>
 
         <h1>Galaxy's Most Wanted 戰役日誌</h1>
-
-        <!-- 儲存說明 -->
-        <div id="storage-notice" style="margin: 15px 0; padding: 12px; background: linear-gradient(135deg, #e3f2fd, #f3e5f5); border-left: 4px solid #2196f3; border-radius: 5px; font-size: 0.9em;">
-            <strong>📱 儲存說明：</strong> 使用本地儲存模式，資料保存在此瀏覽器中。請定期備份您的資料。
-        </div>
-
         <div class="section">
             <h2>玩家信息 (Player Information)</h2>
             <div class="grid-container-4">

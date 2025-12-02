@@ -3,6 +3,25 @@
  * 處理戰役日誌的所有互動功能 - 本地儲存
  */
 
+// 全域錯誤處理
+window.addEventListener('error', (event) => {
+    console.warn('捕獲到全域錯誤:', event.error);
+    // 防止錯誤冒泡到瀏覽器控制台
+    if (event.error && event.error.message && event.error.message.includes('runtime.lastError')) {
+        event.preventDefault();
+        console.log('已忽略 runtime.lastError 錯誤');
+    }
+});
+
+// 處理未捕獲的 Promise 拒絕
+window.addEventListener('unhandledrejection', (event) => {
+    console.warn('捕獲到未處理的 Promise 拒絕:', event.reason);
+    if (event.reason && typeof event.reason === 'string' && event.reason.includes('runtime.lastError')) {
+        event.preventDefault();
+        console.log('已忽略 runtime.lastError Promise 拒絕');
+    }
+});
+
 // 全域變數
 const gameFileName = 'marvelChampions_madTitansShadow.json';
 
@@ -195,7 +214,7 @@ async function saveData() {
     console.log('💾 瘋狂泰坦陰影儲存按鈕被點擊');
     
     try {
-        const gameData = collectFormData();
+        const gameData = getFormData();
         const user = getLocalUser();
         const localKey = `${gameFileName}_${user.sub}`;
         
@@ -225,7 +244,7 @@ function loadData() {
         if (savedData) {
             console.log('📂 找到本地瘋狂泰坦陰影資料');
             const gameData = JSON.parse(savedData);
-            populateForm(gameData);
+            setFormData(gameData);
             console.log('📂 瘋狂泰坦陰影資料載入完成');
             updateSyncStatus('📂 瘋狂泰坦陰影資料載入完成', 'success');
         } else {
